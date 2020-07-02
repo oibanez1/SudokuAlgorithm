@@ -38,6 +38,7 @@ board = SudokuAlgorithm()
 sudokuSolved = deepcopy(sudokuBoard) 
 board.solve(0 , 0 , sudokuSolved)
 
+#Draws grid lines
 def drawGrid():
     for line in range(10):
         if line % 3 == 0:
@@ -47,6 +48,7 @@ def drawGrid():
         pygame.draw.line(screen , black , (x , line * across) , (a , line * across) , thickness)   
         pygame.draw.line(screen , black , (line * horziontal , y) , (line * horziontal , b) , thickness)
 
+#Draws numbers present
 def printBoard(board):
     num = pygame.font.Font('freesansbold.ttf' , 20)
     length = len(board)
@@ -54,22 +56,17 @@ def printBoard(board):
     for x in range(length):
         x_coord = 25
         for y in range(length):
+            #if number == 0, do nothing and continue
             if board[x][y] == 0:
                 x_coord += 65
                 continue
             if board[y] == 6 or 7 or 8:
                 x_coord += 4
+            #Draws numbers on screen    
             text = num.render(str(board[x][y]) , True , black)
             screen.blit(text , [x_coord , y_coord])  
             x_coord += 65    
         y_coord += 55
-
-def inputNumber():
-    coords = pygame.mouse.get_pos()
-    inputNumber = pygame.key.name(event.key)
-    number = pygame.font.Font('freesansbold.ttf' , 20)
-    convertNum = number.render(inputNumber , True , black)
-    screen.blit(convertNum , coords)
 
 printBoard(sudokuBoard)
 drawGrid()  
@@ -77,8 +74,8 @@ while 1:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONUP:
             pos = pygame.mouse.get_pos()
-            y_index = int(pos[0] / 65)
             x_index = int(pos[1] / 55)
+            y_index = int(pos[0] / 65)
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_1:
                 key = 1
