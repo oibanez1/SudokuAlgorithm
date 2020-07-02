@@ -1,11 +1,12 @@
 class SudokuAlgorithm:
 
     def solve(self , row , col , board):
-        #base case
+        #base case -> go to next row and start from first column
         if col == len(board):
             col = 0
             row += 1
 
+        #if row == length of board -> we are on the very last cell -> return true to finish    
         if row == len(board):
             return True
 
@@ -52,10 +53,16 @@ class SudokuAlgorithm:
         return True        
 
     #prints whole 2d array
+    # def printBoard(self , board):
+    #     for x in board:
+    #         print()
+    #         for y in x:
+    #             print(y , end = " ")
     def printBoard(self , board):
-        for x in board:
+        length = len(board)
+        for x in range(length):
             print()
-            for y in x:
-                print(y , end = " ")
+            for y in range(length):
+                print(board[x][y] , end = " ")
 
     
