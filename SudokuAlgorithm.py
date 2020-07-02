@@ -5,7 +5,7 @@ class SudokuAlgorithm:
         if col == len(board):
             col = 0
             row += 1
-
+ 
         #if row == length of board -> we are on the very last cell -> return true to finish    
         if row == len(board):
             return True
